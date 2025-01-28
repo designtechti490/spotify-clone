@@ -11,7 +11,7 @@ This project is a clone of the Spotify web application. It aims to replicate the
 - Design inspired by Spotify
 - Font Awesome icons
 - Fonts from Google Fonts
-- Responsive design
+- Responsive design for desktop and mobile devices
 
 ## 💡 Technologies Used
 
@@ -19,9 +19,7 @@ This project is a clone of the Spotify web application. It aims to replicate the
 ![CSS](https://img.shields.io/badge/-CSS-121011?style=for-the-badge&logo=CSS3&logoColor=1572B6)&nbsp;
 ![JavaScript](https://img.shields.io/badge/-JavaScript-121011?style=for-the-badge&logo=javascript)&nbsp;
 ![ReactJS](https://img.shields.io/badge/-ReactJS-121011?style=for-the-badge&logo=react)&nbsp;
-![NodeJS](https://img.shields.io/badge/-NodeJS-121011?style=for-the-badge&logo=node.js)&nbsp;
-![ExpressJS](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)&nbsp;
-![MongoDB](https://img.shields.io/badge/-MongoDB-121011?style=for-the-badge&logo=mongodb)&nbsp;
+![Angular](https://img.shields.io/badge/-Angular-121011?style=for-the-badge&logo=angular)&nbsp;
 
 ## ⚡ Setup
 
