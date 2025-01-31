@@ -1,66 +1,43 @@
-const searchInput = document.getElementById("search-input");
-const resultArtist = document.getElementById("result-artist");
-const resultPlaylist = document.getElementById("result-playlists");
+//BOM DIA | BOA TARDE | BOA NOITE
 
-function requestApi(searchTerm) {
-  // use json-server version 0.17.4
-  const url = `http://localhost:3000/artists?name_like=${searchTerm}`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((result) => displayResults(result));
-}
+// Obtém a referência do elemento com o ID "greeting"
+const greetingElement = document.getElementById("greeting");
 
-function displayResults(result) {
-  resultPlaylist.classList.add("hidden");
+// Obtém a hora atual do sistema
+const currentHour = new Date().getHours();
 
-  // Verifica se encontrou algum artista
-  if (result.length === 0) {
-    resultArtist.innerHTML = `
-      <div class="error-container">
-        <span>Nenhum artista encontrado</span>
-      </div>
-    `;
-    resultArtist.classList.remove("hidden");
-    return;
-  }
+// Define a saudação com base na hora atual
+// if (currentHour >= 5 && currentHour < 12) {
+//   greetingElement.textContent = "Bom dia";
+// } else if (currentHour >= 12 && currentHour < 18) {
+//   greetingElement.textContent = "Boa tarde";
+// } else {
+//   greetingElement.textContent = "Boa noite";
+// }
 
-  // Limpa resultados anteriores
-  resultArtist.innerHTML = `
-    <div class="grid-container">
-      <div class="artist-card">
-        <div class="card-img">
-          <img id="artist-img" class="artist-img" />
-          <div class="play">
-            <span class="fa fa-solid fa-play"></span>
-          </div>
-        </div>
-        <div class="card-text">
-          <a title="Foo Fighters" class="vst" href=""></a>
-          <span class="artist-name" id="artist-name"></span>
-          <span class="artist-categorie">Artista</span>
-        </div>
-      </div>
-    </div>
-  `;
+// Forma mais simples
+const greetingMessage =
+  currentHour >= 5 && currentHour < 12
+    ? "Bom dia"
+    : currentHour >= 12 && currentHour < 18
+    ? "Boa tarde"
+    : "Boa noite";
 
-  const artistName = document.getElementById("artist-name");
-  const artistImage = document.getElementById("artist-img");
+greetingElement.textContent = greetingMessage;
 
-  result.forEach((element) => {
-    artistName.innerText = element.name;
-    artistImage.src = element.urlImg;
-  });
+// GRID INTELIGENTE
+const container = document.querySelector(".offer__list-item");
 
-  resultArtist.classList.remove("hidden");
-}
+const observer = new ResizeObserver(() => {
+  //mudanças no tamanho do elemento
+  const containerWidth = container.offsetWidth; //largura total do elemento, incluindo largura do conteúdo, bordas e preenchimento.
+  const numColumns = Math.floor(containerWidth / 200); //número de colunas com base na largura do container
 
-document.addEventListener("input", function () {
-  const searchTerm = searchInput.value.toLowerCase();
-  if (searchTerm === "") {
-    resultPlaylist.classList.add("hidden");
-    resultArtist.classList.remove("hidden");
-    return;
-  }
+  //largura mínima de 200px e máxima de 1fr (uma fração do espaço disponível).
+  container.style.gridTemplateColumns = `repeat(${numColumns}, minmax(200px, 1fr))`;
 
-  requestApi(searchTerm);
+  console.log({ container });
+  console.log({ numColumns });
 });
+//observando a mudança do elemento
+observer.observe(container);
