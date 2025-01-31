@@ -3,19 +3,11 @@ const resultArtist = document.getElementById("result-artist");
 const resultPlaylist = document.getElementById("result-playlists");
 
 function requestApi(searchTerm) {
-  // Encode o termo de busca para URL
-  const encodedTerm = encodeURIComponent(searchTerm);
-  // Modificar o endpoint para busca exata
+  // use json-server version 0.17.4
   const url = `http://localhost:3000/artists?name_like=${encodedTerm}`;
   fetch(url)
     .then((response) => response.json())
-    .then((result) => {
-      // Filtro adicional no lado do cliente
-      const filteredResults = result.filter((artist) =>
-        artist.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      displayResults(filteredResults);
-    });
+    .then((result) => displayResults(result));
 }
 
 function displayResults(result) {
